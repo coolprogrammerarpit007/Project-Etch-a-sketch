@@ -1,0 +1,81 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: antiquewhite;
+  color: #000;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ******** End of boiler plate ********* */
+
+.main {
+  width: 90%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.title {
+  text-align: center;
+}
+
+.title > h1 {
+  font-size: 4rem;
+}
+
+.color-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  background-color: sandybrown;
+  color: #fff;
+  border: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.7s;
+}
+
+.btn:hover {
+  background-color: #fff;
+  color: sandybrown;
+  border: 1px solid sandybrown;
+}
+
+.container {
+  margin: auto;
+  width: 500px;
+  height: 500px;
+  border: 1px solid gray;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-wrap: wrap;
+}
+
+/* ************************************ */
+
+.box {
+  border: 1px solid black;
+  flex: 1 1 100px;
+  height: 100px;
+}
