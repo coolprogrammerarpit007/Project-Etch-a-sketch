@@ -41,6 +41,8 @@ blackBtn.addEventListener(`click`, function () {
 const changeSize = function () {
   container.innerHTML = ``;
   const grid = Number(prompt(`Enter Size b/w 1 and 100`));
+  container.style.gridTemplateColumns = `repeat(${grid}, 1fr)`;
+  container.style.gridTemplateRows = `repeat(${grid}, 1fr)`;
 
   if (typeof grid === `number`) {
     for (let i = 0; i < grid * grid; i++) {
