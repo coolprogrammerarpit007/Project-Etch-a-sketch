@@ -44,7 +44,7 @@ const changeSize = function () {
   container.style.gridTemplateColumns = `repeat(${grid}, 1fr)`;
   container.style.gridTemplateRows = `repeat(${grid}, 1fr)`;
 
-  if (typeof grid === `number`) {
+  if (typeof grid === `number` && grid <= 100) {
     for (let i = 0; i < grid * grid; i++) {
       const box = document.createElement(`div`);
       box.classList.add(`box`);
