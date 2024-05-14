@@ -63,19 +63,14 @@ body {
 
 .container {
   margin: auto;
-  width: 500px;
-  height: 500px;
+  width: 960px;
+  height: 960px;
   border: 1px solid gray;
-  display: flex;
-  justify-content: start;
-  align-items: start;
-  flex-wrap: wrap;
+  display: grid;
 }
 
 /* ************************************ */
 
 .box {
   border: 1px solid black;
-  flex: 1 1 100px;
-  height: 100px;
 }
