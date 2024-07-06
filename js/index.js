@@ -1,79 +1,92 @@
 `use strict`;
 
-// getting acess to all buttons
+let color = ``;
+let index;
+let flag = true;
+// getting acess to the color buttons
 
 const blackBtn = document.getElementById(`black`);
 const colorBtn = document.getElementById(`colorful`);
 const sizeBtn = document.getElementById(`size`);
 const clearBtn = document.getElementById(`clear`);
+
 const container = document.querySelector(`.container`);
 
-// state variable
-let colorValue;
-let flag = ``;
-
-// Event listener to random color button
-
-// Event Listener to the random color
-
-const randomColorGenerator = function () {
-  colorValue = `#`;
-  const str = `0123456789ABCDEF`;
-  for (let i = 0; i < 6; i++) {
-    colorValue += str[Math.floor(Math.random() * str.length)];
-  }
-  return colorValue;
-};
-
-colorBtn.addEventListener(`click`, function (e) {
+// change to black color
+function changeToBlack() {
   flag = true;
-  randomColorGenerator();
-});
+  color = `#000`;
+  return color;
+}
 
-// Event listener to the black color button
-blackBtn.addEventListener(`click`, function () {
+// function to change color
+function changeColor() {
+  color = `#`;
+  let text = `0123456789ABCDEF`;
+  for (let i = 0; i < 3; i++) {
+    index = Math.floor(Math.random() * text.length);
+    color += text[index];
+  }
   flag = false;
-  colorValue = `#000`;
-});
+  return color;
+}
 
-// Event listener to change size of grid
+// function to clear
+function clearAll(){
+  color = ``;
+  const gridBox = document.querySelectorAll(`.box`);
+  if(gridBox){
+    gridBox.forEach(grid =>{
+      grid.style.backgroundColor = ``;
+    })
+  }
+  
+}
 
-const changeSize = function () {
-  container.innerHTML = ``;
-  const grid = Number(prompt(`Enter Size b/w 1 and 100`));
-  container.style.gridTemplateColumns = `repeat(${grid}, 1fr)`;
-  container.style.gridTemplateRows = `repeat(${grid}, 1fr)`;
+// Adding event listener to the size btn to create a N*N Grid
 
-  if (typeof grid === `number` && grid <= 100) {
-    for (let i = 0; i < grid * grid; i++) {
-      const box = document.createElement(`div`);
-      box.classList.add(`box`);
-      container.append(box);
+const gridSize = function () {
+  const gridSize = Number(prompt(`Enter Size b/w 1 and 100`));
+  if (gridSize <= 100) {
+    container.innerHTML = ``;
+    for (let i = 0; i < gridSize * gridSize; i++) {
+      const div = document.createElement(`div`);
+      div.classList.add(`box`);
+      container.append(div);
+      container.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+      container.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
     }
 
-    // Event listener to the clear button
-    clearBtn.addEventListener(`click`, function (e) {
-      console.log(`clear button working!`);
-      colorValue = ``;
-
-      document.querySelectorAll(`.box`).forEach((box) => {
-        box.style.backgroundColor = colorValue;
-      });
-    });
-    // color change over div element
-    const boxes = document.querySelectorAll(`.box`);
-    boxes.forEach((box) => {
-      box.addEventListener("mouseover", (e) => {
-        console.log(colorValue);
-        if (flag === true) {
-          box.style.backgroundColor = randomColorGenerator();
+    const gridBox = document.querySelectorAll(`.box`);
+    gridBox.forEach((box) => {
+      box.addEventListener(`mouseover`, function (e) {
+        if (flag) {
+          box.style.backgroundColor = `${changeToBlack()}`;
+        } else {
+          box.style.backgroundColor = `${changeColor()}`;
         }
-        box.style.backgroundColor = colorValue;
       });
     });
   } else {
-    alert(`Enter a valid value...`);
+    alert(`Please enter a correct value!`);
   }
 };
 
-sizeBtn.addEventListener(`click`, changeSize);
+sizeBtn.addEventListener(`click`, gridSize);
+
+// Adding event listener to the black btn
+
+blackBtn.addEventListener(`click`, function (e) {
+  changeToBlack();
+});
+
+// Adding event listener to the color btn
+
+colorBtn.addEventListener(`click`, changeColor);
+
+
+// now adding event listener to the clear btn
+
+clearBtn.addEventListener(`click`,function(e){
+  clearAll();
+})
